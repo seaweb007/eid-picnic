@@ -1,0 +1,74 @@
+/* ============================================================
+   EID PICNIC 2027 — RESPONSIVE RULES
+   ============================================================ */
+
+@media (max-width: 768px) {
+  section { padding: 50px 0; }
+}
+
+/* Nav */
+@media (max-width: 992px) {
+  .nav-links {
+    position: fixed; top: 0; right: -100%; height: 100vh; width: min(78vw, 340px); background: var(--ink);
+    flex-direction: column; justify-content: center; gap: 32px; transition: right .4s cubic-bezier(.2, .8, .2, 1);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, .4); padding: 40px 20px; z-index: 950;
+  }
+  .nav-links.open { right: 0; }
+  .nav-toggle { display: block; }
+  .nav-cta .btn-outline { display: none; }
+}
+
+/* Hero */
+@media (max-width: 992px) {
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-sub { margin-left: auto; margin-right: auto; }
+  .hero-actions { justify-content: center; }
+}
+
+/* Grids */
+@media (max-width: 992px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* Gallery */
+@media (max-width: 768px) {
+  .gallery-masonry { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 140px; }
+  .g-span2 { grid-column: span 2; }
+}
+
+/* Timeline */
+@media (max-width: 768px) {
+  .tl-block { flex-direction: column; gap: 8px; }
+  .tl-block .time { min-width: auto; }
+}
+
+/* Contact */
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .contact-options { grid-template-columns: 1fr; }
+  .reserve-card { padding: 30px 20px; }
+}
+
+/* Footer */
+@media (max-width: 768px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Sticky CTA (mobile only) */
+@media (max-width: 700px) {
+  .sticky-cta { display: flex; }
+  .fab-wa { bottom: 84px; }
+}
+
+/* Small screens fine-tuning */
+@media (max-width: 480px) {
+  .container { padding: 0 18px; }
+  .btn-lg { padding: 15px 30px; font-size: 1rem; }
+  .page-hero { padding: 140px 0 50px; }
+}
