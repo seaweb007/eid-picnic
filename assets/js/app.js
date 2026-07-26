@@ -76,6 +76,10 @@
 
   // ===== EXTERNAL LINKS: force new tab safety =====
   document.querySelectorAll('a[target="_blank"]').forEach(function (a) {
-    if (!a.getAttribute('rel')) a.setAttribute('rel', 'noopener noreferrer');
+    var rel = (a.getAttribute('rel') || '').split(/\s+/).filter(Boolean);
+    ['noopener', 'noreferrer'].forEach(function (token) {
+      if (rel.indexOf(token) === -1) rel.push(token);
+    });
+    a.setAttribute('rel', rel.join(' '));
   });
 })();
