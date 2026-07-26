@@ -1,0 +1,16 @@
+{
+  "name": "eid-picnic-2027",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static website for Eid Picnic 2027 — Jannah Immigrants",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^2.1.8",
+    "jsdom": "^25.0.1",
+    "vitest": "^2.1.8"
+  }
+}
