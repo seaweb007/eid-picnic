@@ -99,6 +99,33 @@ contents of `eid-picnic-2027/` as-is. Set `404.html` as the custom error page
 in your host's settings if it supports one (Netlify and GitHub Pages both do
 automatically by filename).
 
+## Security notes
+
+The site is fully static (no backend, no database, no API keys), so the attack
+surface is the browser. What's in place:
+
+- **Content-Security-Policy** meta tag on every page: `default-src 'none'` with
+  an allowlist for the Google Fonts / cdnjs stylesheets, the Pexels + pravatar
+  placeholder images, and the Google Maps embed. `script-src 'self'` means no
+  inline or third-party JavaScript can run. If you add a new external asset,
+  add its origin to the CSP in **every** HTML file or the browser will block it.
+- **Subresource Integrity** on the Font Awesome CDN stylesheet, so a
+  compromised CDN can't silently swap the file. If you bump the Font Awesome
+  version, update the `integrity` hash too (cdnjs shows it next to the URL).
+- **Sandboxed map iframes** with `referrerpolicy="no-referrer"`.
+- **`rel="noopener noreferrer"`** on every `target="_blank"` link (enforced at
+  runtime by `app.js` as well).
+- **Contact form limits**: `maxlength` on every field plus email/phone format
+  checks in `contact.js` before the WhatsApp URL is built.
+
+Two headers can't be set from a static HTML file — configure them on your host
+(Netlify `_headers`, Cloudflare/Nginx config, etc.) if you want them:
+
+```
+X-Frame-Options: DENY            # or CSP frame-ancestors 'none'
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+```
+
 ## Replacing placeholder images
 
 Photos currently point to Unsplash/pravatar URLs so the site looks complete
