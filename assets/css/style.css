@@ -168,6 +168,7 @@ h1, h2, h3, h4 {
 .g-item:hover img { transform: scale(1.06); }
 .g-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(13, 42, 32, .4)); opacity: 0; transition: opacity .3s; }
 .g-item:hover::after { opacity: 1; }
+.g-item-broken { display: none !important; }
 .g-span2 { grid-column: span 2; grid-row: span 2; }
 .g-spanw2 { grid-column: span 2; }
 
@@ -296,6 +297,9 @@ h1, h2, h3, h4 {
 .form-note { font-size: .8rem; color: var(--mist); }
 .form-success { display: none; background: rgba(37, 211, 102, .1); border: 1px solid rgba(37, 211, 102, .35); color: var(--emerald-2); padding: 16px 20px; border-radius: var(--radius-sm); font-size: .92rem; }
 .form-success.show { display: block; }
+.form-success a { color: inherit; text-decoration: underline; }
+.form-error { display: none; background: rgba(200, 45, 45, .08); border: 1px solid rgba(200, 45, 45, .35); color: #a32020; padding: 16px 20px; border-radius: var(--radius-sm); font-size: .92rem; }
+.form-error.show { display: block; }
 
 /* 404 */
 .error-container { max-width: 520px; text-align: center; margin: 0 auto; padding: 60px 20px; }
