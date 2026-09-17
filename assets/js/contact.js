@@ -6,37 +6,58 @@
 (function () {
   'use strict';
 
-  var form = document.getElementById('contactForm');
-  if (!form) return;
-
-  var successBox = document.getElementById('formSuccess');
   var WHATSAPP_NUMBER = '2347032700697';
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    var name = form.querySelector('#cf-name').value.trim();
-    var email = form.querySelector('#cf-email').value.trim();
-    var phone = form.querySelector('#cf-phone').value.trim();
-    var topic = form.querySelector('#cf-topic').value;
-    var message = form.querySelector('#cf-message').value.trim();
-
-    if (!name || !email || !message) return;
-
+  function buildWhatsAppUrl(fields) {
     var lines = [
       'Hi, I\'m reaching out via the Eid Picnic 2027 website.',
-      'Name: ' + name,
-      'Email: ' + email
+      'Name: ' + fields.name,
+      'Email: ' + fields.email
     ];
-    if (phone) lines.push('Phone: ' + phone);
-    lines.push('Topic: ' + topic);
-    lines.push('Message: ' + message);
+    if (fields.phone) lines.push('Phone: ' + fields.phone);
+    lines.push('Topic: ' + fields.topic);
+    lines.push('Message: ' + fields.message);
 
-    var text = encodeURIComponent(lines.join('\n'));
-    var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + text;
+    return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' +
+      encodeURIComponent(lines.join('\n'));
+  }
 
-    if (successBox) successBox.classList.add('show');
-    window.open(url, '_blank', 'noopener');
-    form.reset();
-  });
+  function readFields(form) {
+    return {
+      name: form.querySelector('#cf-name').value.trim(),
+      email: form.querySelector('#cf-email').value.trim(),
+      phone: form.querySelector('#cf-phone').value.trim(),
+      topic: form.querySelector('#cf-topic').value,
+      message: form.querySelector('#cf-message').value.trim()
+    };
+  }
+
+  function init() {
+    var form = document.getElementById('contactForm');
+    if (!form) return;
+
+    var successBox = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var fields = readFields(form);
+      if (!fields.name || !fields.email || !fields.message) return;
+
+      if (successBox) successBox.classList.add('show');
+      window.open(buildWhatsAppUrl(fields), '_blank', 'noopener');
+      form.reset();
+    });
+  }
+
+  if (typeof module === 'object' && module.exports) {
+    module.exports = {
+      init: init,
+      readFields: readFields,
+      buildWhatsAppUrl: buildWhatsAppUrl,
+      WHATSAPP_NUMBER: WHATSAPP_NUMBER
+    };
+  } else {
+    init();
+  }
 })();

@@ -91,6 +91,25 @@ No build step or server is required — it's plain HTML/CSS/JS. Two options:
    # then open http://localhost:8000
    ```
 
+## Running the tests
+
+The page scripts in `assets/js/` are covered by unit tests that run in a
+simulated DOM ([Vitest](https://vitest.dev) + jsdom). Node is only needed for
+the tests — the site itself still has no build step.
+
+```bash
+npm install
+npm test          # run the suite once
+npm run test:watch
+npm run coverage  # suite + coverage report
+```
+
+Each script keeps its browser behavior (self-initializing `<script>` in every
+page) but also exposes its `init*` functions and pure helpers via
+`module.exports` when loaded by the test runner, so tests can build a small DOM
+fixture and call a single behavior in isolation. Tests live in `tests/`, one
+file per script.
+
 ## Deploying
 
 This is a static site, so it works on any static host: GitHub Pages, Netlify,
