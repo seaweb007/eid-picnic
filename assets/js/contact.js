@@ -9,7 +9,7 @@
   var form = document.getElementById('contactForm');
   if (!form) return;
 
-  var SHEET_URL = 'https://script.google.com/macros/s/AKfycby-XCFPGAUuCWqNTTK7NSUNGCjRrZuRuxd_CqP3WjCj/dev';
+  var SHEET_URL = 'https://script.google.com/macros/s/AKfycbwEBZmi--YdcR7z1kCXs6QmsMdQeWu2xeHEIEbg8MExg9W-W6Mi4SRVx8gYsf4mzq7xuw/exec';
   var OPEN_WHATSAPP = false;            // set true to also open WhatsApp after saving
   var WHATSAPP_NUMBER = '2347032700697';
 
