@@ -7,7 +7,7 @@
   'use strict';
 
   // Provisional date — final date confirmed after moon sighting, Insha'Allah.
-  var EVENT_DATE = new Date('2027-04-19T09:00:00+01:00').getTime();
+  var EVENT_DATE = new Date('2027-03-11T09:00:00+01:00').getTime();
 
   var daysEl = document.getElementById('cd-days');
   var hoursEl = document.getElementById('cd-hours');
